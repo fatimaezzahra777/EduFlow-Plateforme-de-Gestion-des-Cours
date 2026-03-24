@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -45,5 +46,36 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+    // Relations
+    public function courses()
+    {
+        return $this->hasMany(Cours::class, 'teacher_id');
+    }
+
+    public function interests()
+    {
+        return $this->belongsToMany(Interest::class);
+    }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+    public function inscription()
+    {
+        return $this->hasMany(Inscription::class);
     }
 }
