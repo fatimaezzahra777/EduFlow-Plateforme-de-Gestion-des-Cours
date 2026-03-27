@@ -10,7 +10,7 @@ class Group extends Model
 
      public function course()
      {
-        return $this->belongsTo(Cours::class);
+        return $this->belongsTo(Course::class);
      }
 
     public function inscription()

@@ -18,6 +18,6 @@ class Favorite extends Model
 
     public function course()
     {
-        return $this->belongsTo(Cours::class);
+        return $this->belongsTo(Course::class);
     }
 }

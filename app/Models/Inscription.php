@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Inscription extends Model
 {
+    protected $table = 'inscriptions';
      protected $fillable = [
         'user_id',
         'course_id',
@@ -19,7 +20,7 @@ class Inscription extends Model
 
     public function course()
     {
-        return $this->belongsTo(Cours::class);
+        return $this->belongsTo(Course::class);
     }
 
     public function group()
@@ -27,3 +28,4 @@ class Inscription extends Model
         return $this->belongsTo(Group::class);
     }
 }
+
