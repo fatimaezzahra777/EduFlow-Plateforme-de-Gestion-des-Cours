@@ -1,0 +1,33 @@
+@extends('layouts.app')
+
+@section('content')
+
+<h2>Login</h2>
+
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<script>
+async function login() {
+    const res = await fetch('http://127.0.0.1:8000/api/auth/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value
+        })
+    });
+
+    const data = await res.json();
+
+    localStorage.setItem('token', data.token);
+
+    alert("Login success");
+}
+</script>
+
+@endsection
