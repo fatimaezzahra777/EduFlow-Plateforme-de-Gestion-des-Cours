@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\FavoriteService;
 
 class FavoriteController extends Controller
 {
@@ -13,30 +14,25 @@ class FavoriteController extends Controller
         $this->favoriteService = $favoriteService;
     }
 
-    public function add(Request $request)
+    public function store(Request $request)
     {
-        return $this->favoriteService->addToFavorites($request);
+        return response()->json(
+            $this->favoriteService->addToFavorites($request->integer('course_id')),
+            201
+        );
     }
 
-    public function remove($courseId)
+    public function destroy($courseId)
     {
-        return $this->favoriteService->removeFromFavorites($courseId);
+        return response()->json(
+            $this->favoriteService->removeFromFavorites((int) $courseId)
+        );
     }
 
     public function index()
     {
-        return $this->favoriteService->getFavorites();
+        return response()->json(
+            $this->favoriteService->getFavorites()
+        );
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
