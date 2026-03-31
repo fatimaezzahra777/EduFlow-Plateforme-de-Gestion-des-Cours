@@ -48,4 +48,18 @@ class AuthController extends Controller
     {
         return response()->json($this->service->logout());
     }
+
+    public function forgotPassword(Request $request)
+    {
+        return response()->json(
+            $this->service->forgotPassword($request)
+        );
+    }
+
+    public function resetPassword(Request $request)
+    {
+        return response()->json(
+            $this->service->resetPassword($request)
+        );
+    }
 }
