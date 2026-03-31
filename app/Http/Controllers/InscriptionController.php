@@ -17,17 +17,24 @@ class InscriptionController extends Controller
 
     public function inscri(Request $request)
     {
-        return $this->inscriptionService->inscri($request->course_id);
+        return response()->json(
+            $this->inscriptionService->inscri($request->integer('course_id')),
+            201
+        );
     }
 
 
     public function cancel($id)
     {
-        return $this->inscriptionService->cancel($id);
+        return response()->json(
+            $this->inscriptionService->cancel($id)
+        );
     }
 
     public function myCourses()
     {
-        return $this->inscriptionService->myInscription();
+        return response()->json(
+            $this->inscriptionService->myInscription()
+        );
     }
 }
