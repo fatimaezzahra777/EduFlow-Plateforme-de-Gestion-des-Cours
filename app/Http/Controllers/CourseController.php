@@ -33,7 +33,9 @@ class CourseController extends Controller
     {
         $course = $this->service->create($request);
 
-        return new CourseResource($course);
+        return (new CourseResource($course))
+            ->response()
+            ->setStatusCode(201);
     }
 
     public function update(Request $request, $id)
@@ -47,6 +49,20 @@ class CourseController extends Controller
     {
         return response()->json(
             $this->service->delete($id)
+        );
+    }
+
+    public function recommended()
+    {
+        return CourseResource::collection(
+            $this->service->recommendedForStudent()
+        );
+    }
+
+    public function students($courseId)
+    {
+        return response()->json(
+            $this->service->studentsForTeacher($courseId)
         );
     }
 }
