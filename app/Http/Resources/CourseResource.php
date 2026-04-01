@@ -19,6 +19,12 @@ class CourseResource extends JsonResource
                 'id' => $this->teacher->id,
                 'name' => $this->teacher->name
             ],
+            'interests' => $this->whenLoaded('interests', function () {
+                return $this->interests->map(fn ($interest) => [
+                    'id' => $interest->id,
+                    'nom' => $interest->nom,
+                ]);
+            }),
 
             'created_at' => $this->created_at
         ];
