@@ -13,7 +13,7 @@ class Group extends Model
         return $this->belongsTo(Course::class);
      }
 
-    public function inscription()
+    public function inscriptions()
     {
         return $this->hasMany(Inscription::class);
     }
