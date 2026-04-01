@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class course extends Model
+class Course extends Model
 {
     protected $table = 'courses';
+
     protected $fillable = [
         'titre',
         'description',
@@ -32,5 +33,10 @@ class course extends Model
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
+    }
+
+    public function interests()
+    {
+        return $this->belongsToMany(Interest::class);
     }
 }
